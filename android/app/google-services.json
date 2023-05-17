@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "736204319157",
+    "project_id": "jobendear-ae2f3",
+    "storage_bucket": "jobendear-ae2f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736204319157:android:c717feef8c2ce6f9f591fc",
+        "android_client_info": {
+          "package_name": "com.example.job_endear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736204319157-tv3vidoq3ide3ilo1jifhtls5bbolu7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4fQik7tdHT7xq-GOBY80hD1ZDATkLpD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736204319157-tv3vidoq3ide3ilo1jifhtls5bbolu7t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "736204319157-23ie0thn1pauiqf492uml4fqo16ve9is.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.jobEndear"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
