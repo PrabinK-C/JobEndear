@@ -11,6 +11,12 @@ class AlgorithmInputController extends GetxController {
   List<Project> projectData = [];
   List<Freelancer> freelancerData = [];
   bool isloading = true;
+  @override
+  void onInit() {
+    super.onInit();
+    getFreelancerData();
+    getProjectData();
+  }
 
   Future<void> getFreelancerData() async {
     try {
@@ -19,16 +25,13 @@ class AlgorithmInputController extends GetxController {
           .collection('freelancers')
           .where('freelancerId', isEqualTo: uid)
           .get()
-          .then(((value) {
-        freelancerData = value.docs
-            .map<Freelancer>(
-                (e) => Freelancer.fromJson(e.data() as Map<String, dynamic>))
-            .toList();
-
+          .then((value) {
+        freelancerData =
+            value.docs.map((e) => Freelancer.fromJson(e.data())).toList();
         debugPrint(freelancerData.toString());
         isloading = false;
         update();
-      }));
+      });
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -37,11 +40,8 @@ class AlgorithmInputController extends GetxController {
   Future<void> getProjectData() async {
     try {
       await _firestore.collection('jobs').get().then((value) {
-        projectData = value.docs
-            .map<Project>(
-                (e) => Project.fromJson(e.data() as Map<String, dynamic>))
-            .toList();
-
+        projectData =
+            value.docs.map((e) => Project.fromJson(e.data())).toList();
         debugPrint(projectData.toString());
         isloading = false;
         update();

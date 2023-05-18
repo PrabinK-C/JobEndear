@@ -87,8 +87,10 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           leading: IconButton(
             onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const UploadJobNow()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UploadJobNow()));
             },
             icon: const Icon(Icons.arrow_back),
           ),
@@ -133,7 +135,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 fontSize: 20,
                                 color: title.contains(keyword)
                                     ? const Color.fromARGB(255, 255, 255, 255)
-                                    : const Color.fromARGB(255, 0, 230, 255),
+                                    : Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
                             subtitle: Text(
@@ -142,7 +144,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 fontSize: 20,
                                 color: description.contains(keyword)
                                     ? const Color.fromARGB(255, 255, 255, 255)
-                                    : const Color.fromARGB(255, 127, 255, 122),
+                                    : Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
                             onTap: () {

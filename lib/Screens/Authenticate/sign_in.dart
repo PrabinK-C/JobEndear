@@ -38,18 +38,19 @@ class _SignInState extends State<SignIn> {
               title: const Text('Sign In  to JobEndear'),
               actions: <Widget>[
                 TextButton.icon(
-                    icon: const Icon(Icons.person, color: Colors.white),
-                    label: const Text(
-                      'Register',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                    ),
-                    onPressed: () {
-                      widget.toggleView();
-                    })
+                  icon: const Icon(Icons.person, color: Colors.white),
+                  label: const Text(
+                    'Register',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                  ),
+                  onPressed: () {
+                    widget.toggleView();
+                  },
+                )
               ],
             ),
             body: SingleChildScrollView(
@@ -96,48 +97,56 @@ class _SignInState extends State<SignIn> {
                           }),
                       const SizedBox(height: 20.0),
                       TextFormField(
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 253, 253, 253),
-                              fontSize: 20.00),
-                          obscureText: _obscure,
-                          decoration: InputDecoration(
-                              icon: const Icon(
-                                Icons.password,
-                                color: Color.fromARGB(255, 255, 255, 255),
-                              ),
-                              hintText: "Enter Password",
-                              hintStyle: const TextStyle(
-                                  color: Color.fromARGB(255, 248, 248, 248)),
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                    width: 5.00),
-                              ),
-                              focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                color: Colors.lightBlueAccent,
-                                width: 2.0,
-                              )),
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _obscure = !_obscure;
-                                    });
-                                  },
-                                  icon: Icon(
-                                    _obscure
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    color:
-                                        const Color.fromARGB(255, 255, 111, 0),
-                                  ))),
-                          validator: (val) =>
-                              val!.length < 6 ? 'Password too short' : null,
-                          onChanged: (val) {
-                            setState(() {
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 253, 253, 253),
+                          fontSize: 20.00,
+                        ),
+                        obscureText: _obscure,
+                        decoration: InputDecoration(
+                          icon: const Icon(
+                            Icons.password,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                          hintText: "Enter Password",
+                          hintStyle: const TextStyle(
+                            color: Color.fromARGB(255, 248, 248, 248),
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              width: 5.00,
+                            ),
+                          ),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.lightBlueAccent,
+                              width: 2.0,
+                            ),
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _obscure = !_obscure;
+                              });
+                            },
+                            icon: Icon(
+                              _obscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        validator: (val) =>
+                            val!.length < 6 ? 'Password too short' : null,
+                        onChanged: (val) {
+                          setState(
+                            () {
                               password = val;
-                            });
-                          }),
+                            },
+                          );
+                        },
+                      ),
                       const SizedBox(
                         height: 15.00,
                       ),
@@ -199,56 +208,43 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                       ),
-                      // child: Text(
-                      ///   'Sign in',
-                      //   style: TextStyle(
-                      //     color: Colors.white,
-                      //     fontWeight: FontWeight.bold,
-                      //     fontSize: 16.0),
-                      // ),
-                      //  style: ButtonStyle(
-                      //  backgroundColor:
-                      //      MaterialStateProperty.all(Colors.pink[400]),
-//side: MaterialStateProperty.all(BorderSide(
-                      //    width: 3.0,
-                      //   color: Color.fromARGB(255, 181, 199, 214),
-                      //  )),
-                      //   textStyle: MaterialStateProperty.all(
-                      //     TextStyle(color: Colors.white),
-                      //   )),
-
-                      // ),
                       const SizedBox(
                         height: 15.0,
                       ),
                       Center(
                         child: RichText(
-                            text: TextSpan(children: [
-                          const TextSpan(
-                              text: 'Don"t have an Account? ',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              )),
-                          const TextSpan(text: ''),
-                          TextSpan(
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Register(
-                                              toggleView: () {
-                                                setState(() {});
-                                              },
-                                            ))),
-                              text: 'Register',
-                              style: const TextStyle(
-                                color: Color.fromARGB(255, 215, 237, 235),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                              ))
-                        ])),
+                          text: TextSpan(
+                            children: [
+                              const TextSpan(
+                                  text: 'Don"t have an Account ? ',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  )),
+                              const TextSpan(text: ''),
+                              TextSpan(
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Register(
+                                            toggleView: () {
+                                              setState(() {});
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                text: ' Register',
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 12.0),
                       Text(

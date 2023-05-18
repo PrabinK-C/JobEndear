@@ -67,5 +67,16 @@ class Project {
     };
   }
 
-  static fromJson(Map<String, dynamic> data) {}
+  Project.fromJson(Map<String, dynamic> map) {
+    projectId = map['projectId'].toString();
+    title = map['title'].toString();
+    budget = (map['budget'] ?? 0).toDouble();
+    description = map['description'].toString();
+    category = map['category'].toString();
+    location = map['location'].toString();
+    clientId = map['clientId'].toString();
+    requirements = map['requirements'].toString();
+    skills = map['skills'].toString();
+    experience = map['experience'].toString();
+  }
 }

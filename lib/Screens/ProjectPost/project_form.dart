@@ -44,7 +44,7 @@ class _ProjectFormViewState extends State<ProjectFormView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigatorforApp(indexNum: 0),
+      bottomNavigationBar: BottomNavigatorforApp(indexNum: 1),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         flexibleSpace: Container(
@@ -67,7 +67,7 @@ class _ProjectFormViewState extends State<ProjectFormView> {
               context,
               MaterialPageRoute(
                 builder: (_) => BottomNavigatorforApp(
-                  indexNum: 0,
+                  indexNum: 1,
                 ),
               ),
             );

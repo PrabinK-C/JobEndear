@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:job_endear/Models/user.dart';
 import 'package:job_endear/Services/database.dart';
 import 'package:flutter/material.dart';
+import 'package:quiver/iterables.dart';
 
 class AuthService extends ChangeNotifier {
   final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
   bool loading = false;
 
   //create user obj based on FirebaseUser
@@ -30,11 +34,13 @@ class AuthService extends ChangeNotifier {
       auth.UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       auth.User? user = result.user;
+      // count = user.
+      // users.doc(user?.uid).update({"count":count + 1});
       loading = true;
       notifyListeners();
       return user != null ? _userFromFirebaseUser(user) : null;
     } catch (error) {
-      debugPrint(error.toString());
+      print(error.toString());
       return null;
     }
   }
@@ -70,7 +76,7 @@ class AuthService extends ChangeNotifier {
       debugPrint('Client');
       return _userFromFirebaseUser(user);
     } catch (error) {
-      debugPrint(error.toString());
+      print(error.toString());
       return null;
     }
   }
@@ -106,7 +112,7 @@ class AuthService extends ChangeNotifier {
       debugPrint('Freelancer');
       return _userFromFirebaseUser(user);
     } catch (error) {
-      debugPrint(error.toString());
+      print(error.toString());
       return null;
     }
   }
@@ -116,7 +122,7 @@ class AuthService extends ChangeNotifier {
     try {
       return await _auth.signOut();
     } catch (e) {
-      debugPrint(e.toString());
+      print(e.toString());
       return null;
     }
   }
