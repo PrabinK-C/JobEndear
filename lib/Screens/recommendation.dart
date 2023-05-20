@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job_endear/Models/project.dart';
 import 'package:job_endear/Models/sentence.dart';
+import 'package:job_endear/Screens/ProjectList/projectlist.dart';
 import 'package:job_endear/Screens/Project_detail/project_detail.dart';
 import 'package:job_endear/Services/algorithm_input.dart';
 import 'package:job_endear/shared/loading.dart';
@@ -34,86 +35,141 @@ class _RecommendationViewState extends State<RecommendationView> {
           freelancerInput =
               " ${freelancerData[0].category} ${freelancerData[0].skills} ";
 
-          recommendations = getRecommendation(projectData, freelancerInput);
+          if (projectData.isNotEmpty && projectData.length >= 5) {
+            recommendations = getRecommendation(projectData, freelancerInput);
 
-          // Clear the recommendedProjects list before adding new projects
-          recommendedProject.clear();
+            // Clear the recommendedProjects list before adding new projects
+            recommendedProject.clear();
 
-          for (int i = 0; i < 5; i++) {
-            recommendedProject.add(projectData[recommendations[i]]);
+            for (int i = 0; i < 5; i++) {
+              recommendedProject.add(projectData[recommendations[i]]);
+            }
           }
-          return Stack(children: [
-            Scaffold(
-              body: Column(
+          return Stack(
             children: [
-              Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF6600FF), Color(0xFF8C309C)],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
+              Scaffold(
+                appBar: AppBar(
+                  title: const Text(
+                    'Recomendation',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: ListView.builder(
-                    itemCount: recommendedProject.length,
-                    itemBuilder: (context, index) {
-                      Project project = recommendedProject[index];
-                      return Card(
-                        margin: const EdgeInsets.all(16),
-                        child: ListTile(
-                          title: Text(
-                            project.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 32.0,
-                              color: const Color.fromARGB(255, 59, 27, 49),
-                              letterSpacing: 1.5,
-                              fontStyle: FontStyle.italic,
-                              decorationThickness: 2.0,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.grey.withOpacity(0.9),
-                                  offset: const Offset(4, 4),
-                                  blurRadius: 10,
-                                ),
-                              ],
-                            ),
+                  centerTitle: true,
+                  flexibleSpace: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xFF6600FF),
+                          Color(0xFF8C309C),
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                  ),
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back),
+                  ),
+                  actions: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        padding: EdgeInsets.zero,
+                        minimumSize: Size(40.0, 40.0),
+                        elevation: 0.0,
+                        backgroundColor: Colors.transparent,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Jobscreen(),
                           ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: Text(
-                              project.description,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                          ),
-                          trailing: OutlinedButton(
-                            onPressed: () {
-                              // Navigate to the project detail page
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) =>
-                                      ProjectDetailsPage(project: project),
-                                ),
-                              );
-                            },
-                            child: const Text('View Details'),
+                        );
+                      },
+                      child: const Text('Jobscreen'),
+                    )
+                  ],
+                ),
+                body: Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xFF6600FF), Color(0xFF8C309C)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
                           ),
                         ),
-                      );
-                    },
-                  ),
+                        child: ListView.builder(
+                          itemCount: recommendedProject.length,
+                          itemBuilder: (context, index) {
+                            Project project = recommendedProject[index];
+                            return Card(
+                              margin: const EdgeInsets.all(16),
+                              child: ListTile(
+                                title: Text(
+                                  project.title,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 32.0,
+                                    color:
+                                        const Color.fromARGB(255, 59, 27, 49),
+                                    letterSpacing: 1.5,
+                                    fontStyle: FontStyle.italic,
+                                    decorationThickness: 2.0,
+                                    shadows: [
+                                      Shadow(
+                                        color: Colors.grey.withOpacity(0.9),
+                                        offset: const Offset(4, 4),
+                                        blurRadius: 10,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                subtitle: Padding(
+                                  padding: const EdgeInsets.only(top: 8),
+                                  child: Text(
+                                    project.description,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey[600],
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                  ),
+                                ),
+                                trailing: OutlinedButton(
+                                  onPressed: () {
+                                    // Navigate to the project detail page
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => ProjectDetailsPage(
+                                            project: project),
+                                      ),
+                                    );
+                                  },
+                                  child: const Text('View Details'),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
-              ),
-            ),
-          ]);
+          );
         } else {
           return Loading();
         }

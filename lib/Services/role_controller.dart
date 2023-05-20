@@ -6,34 +6,6 @@ import 'package:job_endear/Models/UserData.dart';
 import 'package:job_endear/Models/application.dart';
 import 'package:job_endear/Models/project.dart';
 
-class Project {
-  String projectId;
-  String description;
-
-  Project({required this.projectId, required this.description});
-
-  factory Project.fromJson(Map<String, dynamic> json) {
-    return Project(
-      projectId: json['projectId'] ?? '',
-      description: json['description'] ?? '',
-    );
-  }
-}
-
-class Freelancer {
-  String freelancerId;
-  String name;
-
-  Freelancer({required this.freelancerId, required this.name});
-
-  factory Freelancer.fromJson(Map<String, dynamic> json) {
-    return Freelancer(
-      freelancerId: json['freelancerId'] ?? '',
-      name: json['name'] ?? '',
-    );
-  }
-}
-
 class RoleController extends GetxController {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -77,21 +49,20 @@ class RoleController extends GetxController {
           .get()
           .then(((value) {
         applicationData = value.docs
-            .map<ProjectApplication>(
-                (e) => ProjectApplication.fromJson(e.data()))
+            .map((e) => ProjectApplication.fromJson(e.data()))
             .toList();
-
         // debugPrint(applicationData[0].projectId);
         // debugPrint("iamheereee");
         for (int i = 0; i < applicationData.length; i++) {
-          getFreelancer(applicationData[i].uid);
+          getFreelancer(applicationData[i].userId);
         }
+        debugPrint(applicationData[0].userId);
 
         isLoading = false;
         update();
       }));
     } catch (e) {
-      debugPrint(e.toString());
+      print(e.toString());
     }
   }
 
@@ -104,13 +75,13 @@ class RoleController extends GetxController {
           .then(((value) {
         freelancerData =
             value.docs.map((e) => Freelancer.fromJson(e.data())).toList();
-        // debugPrint(freelancerData.toString());
+        debugPrint(freelancerData[0].experience.toString());
 
         isLoading = false;
         update();
       }));
     } catch (e) {
-      debugPrint(e.toString());
+      print(e.toString());
     }
   }
 
@@ -124,7 +95,7 @@ class RoleController extends GetxController {
           .get()
           .then(((value) {
         roledata = value.docs.map((e) => Role.fromJson(e.data())).toList();
-        // debugPrint(roledata[0].email);
+        debugPrint(roledata[0].email);
         getProject(uid);
 
         isLoading = false;

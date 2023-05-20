@@ -7,6 +7,7 @@ import 'package:job_endear/Screens/Authenticate/sign_in.dart';
 import 'package:job_endear/Screens/ProjectList/projectlist.dart';
 
 import 'package:job_endear/Screens/ProjectPost/project_form.dart';
+import 'package:job_endear/Screens/Project_detail/applicant_list.dart';
 import 'package:job_endear/Screens/Search/profile_company.dart';
 import 'package:job_endear/Screens/Search/search_comapnies.dart';
 import 'package:job_endear/Screens/freelancer_profile.dart/f_profile_form.dart';
@@ -120,7 +121,7 @@ class BottomNavigatorforApp extends StatelessWidget {
           ),
         if (role == 'Client')
           const Icon(
-            Icons.search_off,
+            Icons.add_box_outlined,
             size: 24,
             color: Colors.black,
           ),
@@ -143,13 +144,11 @@ class BottomNavigatorforApp extends StatelessWidget {
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (_) => Jobscreen()));
           } else if (index == 1) {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => SearchScreen()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (_) => const SearchScreen()));
           } else if (index == 2) {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const FreelancerProfilePostView()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (_) => FreelancerProfilePostView()));
           } else if (index == 3) {
             Navigator.pushReplacement(
                 context,
@@ -162,13 +161,14 @@ class BottomNavigatorforApp extends StatelessWidget {
           // Client navigation
           if (index == 0) {
             Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (_) => ProjectApplicationsPage()));
+          } else if (index == 1) {
+            Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (_) => const ProjectFormView()));
           } else if (index == 1) {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => SearchScreen()));
           } else if (index == 2) {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => ProfileScreen()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (_) => const ProfileScreen()));
           } else if (index == 3) {
             _logout(context);
           }

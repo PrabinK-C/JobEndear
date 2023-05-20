@@ -1,19 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ProjectApplication {
-  final String uid;
-  final DateTime appliedAt;
-  final String? status;
-  final DateTime? hiredAt;
-  final String? hiredBy;
+  late String userId;
+  // late DateTime appliedAt;
+  late String? status;
+  // late DateTime? hiredAt;
+  late String? hiredBy;
+  late String? projectId;
 
   ProjectApplication({
-    required this.uid,
-    required this.appliedAt,
+    required this.userId,
+    // required this.appliedAt,
     this.status,
-    this.hiredAt,
+    // this.hiredAt,
     this.hiredBy,
+    this.projectId,
   });
 
-  get projectId => null;
+  ProjectApplication.fromJson(Map<String, dynamic> map) {
+    userId = map['userId'].toString();
+    // appliedAt = map['appliedAt'].toDate();
+    status = map['status'].toString();
+    // hiredAt = map['hiredAt'].toDate();
+    hiredBy = map['hiredBy'].toString();
+    projectId = map['projectId'].toString();
+  }
 
-  static fromJson(Map<String, dynamic> data) {}
+  static fromSnapshot(QueryDocumentSnapshot<Object?> doc) {}
 }

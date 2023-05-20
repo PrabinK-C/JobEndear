@@ -5,6 +5,7 @@ import 'package:job_endear/Models/project.dart';
 import 'package:job_endear/Screens/Home/Widget/bottom_nav_bar.dart';
 
 import 'package:job_endear/Screens/Project_detail/project_detail.dart';
+import 'package:job_endear/Screens/recommendation.dart';
 
 class Jobscreen extends StatefulWidget {
   late String title;
@@ -60,6 +61,28 @@ class _JobscreenState extends State<Jobscreen> {
                   ),
                 ),
               ),
+              actions: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    padding: EdgeInsets.zero,
+                    minimumSize: Size(40.0, 40.0),
+                    elevation: 0.0,
+                    backgroundColor: Colors.transparent,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RecommendationView(),
+                      ),
+                    );
+                  },
+                  child: const Text('Recomendation'),
+                )
+              ],
             ),
             body: StreamBuilder<List<Project>>(
               stream: FirebaseFirestore.instance

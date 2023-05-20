@@ -33,6 +33,7 @@ class DatabaseService {
         'companyName': companyName,
         'companyAddress': companyAddress,
         'projectIds': projectId,
+        'count': 0,
       }).then((DocumentReference ref) => ref.update({'userId': uid}));
     } catch (e) {
       debugPrint(e.toString());
@@ -60,6 +61,7 @@ class DatabaseService {
         'freelancerTitle': freelancerTitle,
         'freelancerDescription': freelancerDescription,
         'projectIds': projectId,
+        'count': 0,
       }).then((DocumentReference ref) => ref.update({'userId': uid}));
     } catch (e) {
       debugPrint(e.toString());

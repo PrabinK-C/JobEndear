@@ -12,6 +12,7 @@ class ProjectController extends GetxController {
   List<Role> roledata = [];
   List<Project> projectData = [];
   List<Freelancer> freelancerData = [];
+  List<UserData> userData = [];
 
   List<ProjectApplication> applicationData = [];
   bool isLoading = true;
@@ -23,15 +24,14 @@ class ProjectController extends GetxController {
           .where('clientId', isEqualTo: clientId)
           .get()
           .then(((value) {
-        projectData = value.docs
-            .map<Project>(
-                (e) => Project.fromJson(e.data() as Map<String, dynamic>))
-            .toList();
+        projectData =
+            value.docs.map((e) => Project.fromJson(e.data())).toList();
         //  debugPrint(projectData[0].description);
 
         for (int i = 0; i < projectData.length; i++) {
           getApplication(projectData[i].projectId);
         }
+
         isLoading = false;
         update();
       }));
@@ -43,23 +43,19 @@ class ProjectController extends GetxController {
   Future<void> getApplication(String projectId) async {
     try {
       await _firestore
-          .collection('jobs')
-          .doc(projectId)
           .collection('applications')
           .where('projectId', isEqualTo: projectId)
           .get()
           .then(((value) {
         applicationData = value.docs
-            .map<ProjectApplication>((e) =>
-                ProjectApplication.fromJson(e.data() as Map<String, dynamic>))
+            .map((e) => ProjectApplication.fromJson(e.data()))
             .toList();
-
-        debugPrint(
-            "GET APPLICATION: " + applicationData[0].projectId.toString());
-        debugPrint("iamheereee");
-        for (int i = 0; i < projectData.length; i++) {
-          getFreelancer(applicationData[i].projectId.toString());
+        debugPrint(applicationData[0].projectId);
+        // debugPrint("iamheereee");
+        for (int i = 0; i < applicationData.length; i++) {
+          getFreelancer(applicationData[i].userId);
         }
+
         isLoading = false;
         update();
       }));
@@ -75,11 +71,28 @@ class ProjectController extends GetxController {
           .where('freelancerId', isEqualTo: freelancerId)
           .get()
           .then(((value) {
-        freelancerData = value.docs
-            .map<Freelancer>(
-                (e) => Freelancer.fromJson(e.data() as Map<String, dynamic>))
-            .toList();
-        // debugPrint(freelancerData.toString());
+        freelancerData =
+            value.docs.map((e) => Freelancer.fromJson(e.data())).toList();
+
+        for (int i = 0; i < freelancerData.length; i++) {
+          getUser(freelancerData[i].freelancerId);
+        }
+        isLoading = false;
+        update();
+      }));
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> getUser(String freelancerId) async {
+    try {
+      await _firestore
+          .collection('users')
+          .where('userId', isEqualTo: freelancerId)
+          .get()
+          .then(((value) {
+        userData = value.docs.map((e) => UserData.fromJson(e.data())).toList();
 
         isLoading = false;
         update();
