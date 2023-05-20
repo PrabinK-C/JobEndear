@@ -263,7 +263,7 @@ class _FreelancerProfilePostViewState extends State<FreelancerProfilePostView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigatorforApp(indexNum: 2),
+      bottomNavigationBar: BottomNavigatorforApp(indexNum: 0),
       appBar: AppBar(
         title: const Text('Create Freelancer Profile'),
         leading: IconButton(

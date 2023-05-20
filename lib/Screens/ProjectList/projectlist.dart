@@ -38,7 +38,7 @@ class _JobscreenState extends State<Jobscreen> {
             ),
           ),
           child: Scaffold(
-            bottomNavigationBar: BottomNavigatorforApp(indexNum: 0),
+            bottomNavigationBar: BottomNavigatorforApp(indexNum: 2),
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               title: const Text(

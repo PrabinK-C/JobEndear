@@ -2,13 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job_endear/Screens/Authenticate/authenticate.dart';
-import 'package:job_endear/Screens/ProjectList/projectlist.dart';
-import 'package:job_endear/Screens/ProjectPost/project_form.dart';
+
 import 'package:job_endear/Screens/Project_detail/applicant_list.dart';
 import 'package:job_endear/Services/auth.dart';
 import 'package:job_endear/Services/role_controller.dart';
 import 'package:job_endear/shared/loading.dart';
 import 'package:provider/provider.dart';
+
+import 'freelancer_profile.dart/f_profile_form.dart';
 
 class Wrapper extends StatelessWidget {
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -33,7 +34,7 @@ class Wrapper extends StatelessWidget {
             if (!value.isLoading && value.roledata.isNotEmpty) {
               var role = value.roledata[0].role;
               if (role == "Freelancer") {
-                return Jobscreen();
+                return FreelancerProfilePostView();
               } else {
                 return ProjectApplicationsPage();
               }

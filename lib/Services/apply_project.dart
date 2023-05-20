@@ -13,7 +13,7 @@ class ApplyProjectController {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Apply for Job'),
+          title: const Text('Apply for Job'),
           content: Text('Are you sure you want to apply for this job?'),
           actions: <Widget>[
             TextButton(

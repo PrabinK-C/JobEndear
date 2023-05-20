@@ -91,7 +91,7 @@ class BottomNavigatorforApp extends StatelessWidget {
       items: [
         if (role == 'Freelancer')
           const Icon(
-            Icons.list,
+            Icons.add,
             size: 24,
             color: Colors.black,
           ),
@@ -103,7 +103,7 @@ class BottomNavigatorforApp extends StatelessWidget {
           ),
         if (role == 'Freelancer')
           const Icon(
-            Icons.add,
+            Icons.list,
             size: 24,
             color: Colors.black,
           ),
@@ -141,14 +141,14 @@ class BottomNavigatorforApp extends StatelessWidget {
       onTap: (index) {
         if (role == 'Freelancer') {
           if (index == 0) {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => Jobscreen()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (_) => FreelancerProfilePostView()));
           } else if (index == 1) {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (_) => const SearchScreen()));
           } else if (index == 2) {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (_) => FreelancerProfilePostView()));
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (_) => Jobscreen()));
           } else if (index == 3) {
             Navigator.pushReplacement(
                 context,

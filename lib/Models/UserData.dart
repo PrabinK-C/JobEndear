@@ -9,6 +9,7 @@ class UserData {
   late Client? client;
   late Freelancer? freelancer;
   late String? freelancerTitle;
+  late bool isProfileComplete;
 
   UserData({
     required this.uid,
@@ -19,6 +20,7 @@ class UserData {
     this.client,
     this.freelancer,
     this.freelancerTitle,
+    this.isProfileComplete = false,
   });
 
   UserData.fromJson(Map<String, dynamic> map) {
@@ -28,6 +30,7 @@ class UserData {
     lastName = map['lastName'].toString();
     role = map['role'].toString();
     freelancerTitle = map['freelancerTitle'].toString();
+    isProfileComplete = map['isProfileComplete'] ?? false;
   }
 }
 
@@ -38,6 +41,7 @@ class Role {
   late String lastName;
   late String role;
   late String projectId;
+  late bool isProfileComplete;
 
   Role({
     required this.uid,
@@ -58,12 +62,13 @@ class Role {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['uid'] = this.uid;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['role'] = this.role;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['uid'] = uid;
+    data['email'] = email;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    data['role'] = role;
+    data['isProfileComplete'] = isProfileComplete;
     return data;
   }
 }

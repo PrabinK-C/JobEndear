@@ -36,7 +36,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromARGB(184, 250, 250, 250),
+      backgroundColor: const Color.fromARGB(255, 91, 133, 170),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -46,7 +46,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               const Text(
                 'Forgot Password',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Color.fromARGB(255, 255, 255, 255),
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Montserrat',
@@ -58,7 +58,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   labelStyle: TextStyle(
-                    color: Colors.grey,
+                    color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 20,
                     fontFamily: 'Montserrat',
                   ),

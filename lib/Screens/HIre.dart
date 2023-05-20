@@ -53,7 +53,7 @@ class ProjectApplicationsView extends StatelessWidget {
                           textColor: Colors.white,
                         );
                       },
-                      child: Text('Hire'),
+                      child: const Text('Hire'),
                     ),
                   );
                 },
