@@ -36,7 +36,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(184, 77, 16, 232),
+      backgroundColor: Color.fromARGB(184, 250, 250, 250),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),

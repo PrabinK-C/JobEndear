@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:job_endear/Models/user.dart';
 import 'package:job_endear/Services/database.dart';
 import 'package:flutter/material.dart';
-import 'package:quiver/iterables.dart';
 
 class AuthService extends ChangeNotifier {
   final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;

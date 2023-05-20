@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:job_endear/Screens/Authenticate/ForgetPasswordscreen.dart';
@@ -24,6 +25,9 @@ class _SignInState extends State<SignIn> {
   String email = '';
   String password = '';
   bool _obscure = true;
+  bool _isValidEmail(String email) {
+    return EmailValidator.validate(email);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,38 +67,45 @@ class _SignInState extends State<SignIn> {
                     children: <Widget>[
                       const SizedBox(height: 10.0),
                       TextFormField(
-                          style: const TextStyle(
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 20.00,
+                        ),
+                        decoration: const InputDecoration(
+                          icon: Icon(
+                            Icons.email,
+                            color: Colors.white,
+                          ),
+                          hintText: "Enter Email",
+                          hintStyle: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 20.00,
                           ),
-                          decoration: const InputDecoration(
-                            icon: Icon(
-                              Icons.email,
-                              color: Colors.white,
-                            ),
-                            hintText: "Enter Email",
-                            hintStyle: TextStyle(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  width: 5.00),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.lightBlueAccent,
-                                width: 3.0,
-                              ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                width: 5.00),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.lightBlueAccent,
+                              width: 3.0,
                             ),
                           ),
-                          validator: (val) =>
-                              val!.isEmpty ? 'Enter an Email' : null,
-                          onChanged: (val) {
-                            setState(() {
-                              email = val;
-                            });
-                          }),
+                        ),
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return 'Enter an email';
+                          } else if (!_isValidEmail(val)) {
+                            return 'Enter a valid email';
+                          }
+                          return null;
+                        },
+                        onChanged: (val) {
+                          setState(() {
+                            email = val;
+                          });
+                        },
+                      ),
                       const SizedBox(height: 20.0),
                       TextFormField(
                         style: const TextStyle(

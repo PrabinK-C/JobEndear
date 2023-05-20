@@ -147,10 +147,8 @@ class BottomNavigatorforApp extends StatelessWidget {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (_) => const SearchScreen()));
           } else if (index == 2) {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const FreelancerProfilePostView()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (_) => FreelancerProfilePostView()));
           } else if (index == 3) {
             Navigator.pushReplacement(
                 context,
